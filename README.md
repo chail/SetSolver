@@ -15,7 +15,7 @@ is to find a set of 3 cards such that the cards are either all the same or all d
 The first step was to detect the set cards from an image -- this was done by finding the largest contours on the input 
 image and taking those as cards. Next, the cards had to be warped to fit a rectangular shape and normalized in size. The final
 step was to compare each test card to the training cards, and determine which one was most similar. This approach worked 
-reasonably well for determining the number and shapes of the cards. Many thanks to this great blog [post][blog-post] which was 
+reasonably well for determining the number and shapes of the cards. Many thanks to this great [blog post][blog-post] which was 
 really helpful for this part of the project.
 ###Detecting Fill
 After the cards have been normalized, doing a second contour detection on each card could tell us the fill of the card. Hatched
