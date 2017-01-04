@@ -13,7 +13,6 @@ class ViewController:  UIViewController, UIImagePickerControllerDelegate, UINavi
     var i = 0
     var startup = true
     var cardsArr : [String] = []
-    var button = 0
     
     @IBOutlet weak var row1col1: UIButton!
     @IBOutlet weak var row1col2: UIButton!

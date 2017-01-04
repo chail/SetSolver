@@ -23,6 +23,9 @@ class ViewTwo:  UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     var cardsArr : [String] = []
     var button = 0
     
+    @IBOutlet weak var randomize: UIButton!
+    @IBOutlet weak var select: UIButton!
+    
     var currRow = [0, 0, 0, 0]
 
     override func viewDidLoad() {
@@ -39,10 +42,25 @@ class ViewTwo:  UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destViewController : ViewController = segue.destination as! ViewController
-        cardsArr[button] = selection
         destViewController.startup = false
-        destViewController.cardsArr = cardsArr
-        destViewController.button = button
+        if (sender as? UIButton == select) {
+            self.cardsArr[button] = selection
+        } else {
+            var cards = Set<String>()
+            while (cards.count < 12) {
+                for i in 0..<4 {
+                    currRow[i] = Int(arc4random_uniform(3))
+                }
+                let arr = [pickerData[0][currRow[0]].characters.first!,
+                           pickerData[1][currRow[1]].characters.first!,
+                           pickerData[2][currRow[2]].characters.first!,
+                           pickerData[3][currRow[3]].characters.first!]
+                let card = arr.map({"\($0)"}).joined(separator: "")
+                cards.insert(card)
+            }
+            self.cardsArr = Array(cards)
+        }
+        destViewController.cardsArr = self.cardsArr
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -65,4 +83,5 @@ class ViewTwo:  UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
                                 pickerData[3][currRow[3]].characters.first!]
         selection = arr.map({"\($0)"}).joined(separator: "")
     }
+
 }
