@@ -30,5 +30,10 @@ difficult -- given 3 cards, you need to check that for each feature, they are al
 using a set data structure and computing the size of it. I added a feature so that the user and adjust the cards, if the image
 processing algorithm makes mistakes. Then, the user can ask for hints or the complete solution to the set of cards.
 
+## Credits
+Thanks to this [article][img1], this [blog][img2], and this [blog][img3] as the source of the training images/icons.
 [open-cv]:http://opencv.org/
 [blog-post]:http://arnab.org/blog/so-i-suck-24-automating-card-games-using-opencv-and-python
+[img1]:https://www.quantamagazine.org/20160531-set-proof-stuns-mathematicians/
+[img2]:https://henrikwarne.com/2011/09/30/set-probabilities-revisited/
+[img3]:http://www.theboardgamefamily.com/2013/03/set-card-game-review/
