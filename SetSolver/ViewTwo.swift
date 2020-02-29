@@ -51,10 +51,10 @@ class ViewTwo:  UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
                 for i in 0..<4 {
                     currRow[i] = Int(arc4random_uniform(3))
                 }
-                let arr = [pickerData[0][currRow[0]].characters.first!,
-                           pickerData[1][currRow[1]].characters.first!,
-                           pickerData[2][currRow[2]].characters.first!,
-                           pickerData[3][currRow[3]].characters.first!]
+                let arr = [pickerData[0][currRow[0]].first!,
+                           pickerData[1][currRow[1]].first!,
+                           pickerData[2][currRow[2]].first!,
+                           pickerData[3][currRow[3]].first!]
                 let card = arr.map({"\($0)"}).joined(separator: "")
                 cards.insert(card)
             }
@@ -77,10 +77,10 @@ class ViewTwo:  UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         currRow[component] = row
-        let arr = [pickerData[0][currRow[0]].characters.first!,
-                                pickerData[1][currRow[1]].characters.first!,
-                                pickerData[2][currRow[2]].characters.first!,
-                                pickerData[3][currRow[3]].characters.first!]
+        let arr = [pickerData[0][currRow[0]].first!,
+                                pickerData[1][currRow[1]].first!,
+                                pickerData[2][currRow[2]].first!,
+                                pickerData[3][currRow[3]].first!]
         selection = arr.map({"\($0)"}).joined(separator: "")
     }
 

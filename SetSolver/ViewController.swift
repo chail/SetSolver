@@ -55,8 +55,8 @@ class ViewController:  UIViewController, UIImagePickerControllerDelegate, UINavi
         // handle error in detecting cards
         if (cards == "") {
             let alertController = UIAlertController(title: "iOScreator", message:
-                "Error in detecting cards", preferredStyle: UIAlertControllerStyle.alert)
-            alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
+                "Error in detecting cards", preferredStyle: UIAlertController.Style.alert)
+            alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.default,handler: nil))
             self.present(alertController, animated: true, completion: nil)
             return
         }
@@ -68,7 +68,7 @@ class ViewController:  UIViewController, UIImagePickerControllerDelegate, UINavi
     func setupButtons() {
         let minlength = min(cardsArr.count, buttons.count)
         for i in 0..<minlength {
-            buttons[i].setImage(UIImage(named: cardsArr[i]), for: UIControlState.normal)
+            buttons[i].setImage(UIImage(named: cardsArr[i]), for: UIControl.State.normal)
         }
     }
 
@@ -96,8 +96,8 @@ class ViewController:  UIViewController, UIImagePickerControllerDelegate, UINavi
         if (cardSet.count < 12) {
             // there is a duplicate card
             let alertController = UIAlertController(title: "iOScreator", message:
-                "There is a duplicate card.", preferredStyle: UIAlertControllerStyle.alert)
-            alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
+                "There is a duplicate card.", preferredStyle: UIAlertController.Style.alert)
+            alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.default,handler: nil))
             self.present(alertController, animated: true, completion: nil)
             return
         }
@@ -117,8 +117,8 @@ class ViewController:  UIViewController, UIImagePickerControllerDelegate, UINavi
         if (cardSet.count < 12) {
             // there is a duplicate card
             let alertController = UIAlertController(title: "iOScreator", message:
-                "There is a duplicate card.", preferredStyle: UIAlertControllerStyle.alert)
-            alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
+                "There is a duplicate card.", preferredStyle: UIAlertController.Style.alert)
+            alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.default,handler: nil))
             self.present(alertController, animated: true, completion: nil)
             return
         }
@@ -149,9 +149,9 @@ class ViewController:  UIViewController, UIImagePickerControllerDelegate, UINavi
         var answers = Set<Set<String>>()
         for comb in combs2 {
             let arr = Array(comb)
-            let card1 = arr[0].characters.map { String($0) }
-            let card2 = arr[1].characters.map { String($0) }
-            let card3 = arr[2].characters.map { String($0) }
+            let card1 = arr[0].map { String($0) }
+            let card2 = arr[1].map { String($0) }
+            let card3 = arr[2].map { String($0) }
             
             for i in 0..<4 {
                 let features = Set([card1[i], card2[i], card3[i]])
@@ -166,7 +166,7 @@ class ViewController:  UIViewController, UIImagePickerControllerDelegate, UINavi
         return answers
     }
     
-    // transfer data to picker view
+    /// transfer data to picker view
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destViewController : ViewTwo = segue.destination as! ViewTwo
         for i in 0..<buttons.count {
@@ -184,23 +184,23 @@ class ViewController:  UIViewController, UIImagePickerControllerDelegate, UINavi
     @IBAction func openImagePicker(_ sender: UIButton) {
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
-        imagePicker.sourceType = UIImagePickerControllerSourceType.photoLibrary
+        imagePicker.sourceType = UIImagePickerController.SourceType.photoLibrary
         present(imagePicker, animated: true, completion: nil)
     }
     
     func launchCameraPicker() {
-        if UIImagePickerController.isCameraDeviceAvailable( UIImagePickerControllerCameraDevice.rear) {
+        if UIImagePickerController.isCameraDeviceAvailable( UIImagePickerController.CameraDevice.rear) {
             let imagePicker = UIImagePickerController()
             imagePicker.delegate = self
-            imagePicker.sourceType = UIImagePickerControllerSourceType.camera
+            imagePicker.sourceType = UIImagePickerController.SourceType.camera
             present(imagePicker, animated: true, completion: nil)
         }
     }
     
-    // called after image has been picked
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String :
-        Any]) {
-        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+    /// called after image has been picked
+    func imagePickerController(_ picker: UIImagePickerController,
+    didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             
             //let img = UIImage(named: "Image")
             let img = pickedImage
@@ -220,7 +220,7 @@ class ViewController:  UIViewController, UIImagePickerControllerDelegate, UINavi
         dismiss(animated: true, completion: nil)
     }
     
-    // create a background thread and callback
+    /// create a background thread and callback
     func backgroundThread(background: (() -> Void)? = nil, completion: (() -> Void)? = nil) {
         
         DispatchQueue.global(qos: .background).async {
